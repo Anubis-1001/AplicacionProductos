@@ -27,9 +27,9 @@ public class Transaccion {
 		for(Producto prod: productos) {
 			this.total+=prod.getValorUnitario();
 			
-			if(prod.getNombre() != productoActual.getNombre()) {
+			if(prod.getNombre() != prodActual.getNombre()) {
 				this.detalles.add(new Detalle(totalSubventa, prodActual.getValorUnitario(), prodActual.getNombre()));
-				productoActual = prod;
+				prodActual = prod;
 			}
 		}
 		this.iva = this.total*IVA;

@@ -1,27 +1,11 @@
 package Vista;
 
-import java.util.ArrayList;
-
-import Modelo.Producto;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.layout.GridPane;
-import javafx.application.Application;
-import javafx.scene.control.Button;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.control.TextArea;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
+
 
 
 public class VentanaRefrigerado extends GridPane{

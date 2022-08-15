@@ -1,5 +1,7 @@
 package Controlador;
 
+import java.util.ArrayList;
+
 import Vista.VentanaProducto;
 
 import javafx.scene.layout.VBox;
@@ -16,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
+
 public class Main extends Application{
 	public static void main(String[] args) {
 		launch(args);
@@ -23,9 +26,12 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage window) {
-		VentanaProducto ventana= new VentanaProducto();
-		window.setScene(ventana.getScene());
-		window.show();
+		VentanaProducto ventana= new VentanaProducto(new GridPane());
+		ArrayList<String> atributosProd = ventana.display();
+		System.out.println(atributosProd.get(0));
+		System.out.println(atributosProd.get(1));
+		System.out.println(atributosProd.get(1));
+		System.out.println(atributosProd.get(2));
 	}
 	
 	

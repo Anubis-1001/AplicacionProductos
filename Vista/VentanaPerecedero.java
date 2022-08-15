@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
-
+//Crea el subformulario para los productos perecederos
 public class VentanaPerecedero extends GridPane{
 	public VentanaPerecedero(){
 		

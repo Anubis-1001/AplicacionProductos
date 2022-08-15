@@ -5,8 +5,8 @@ import java.util.Date;
 public class Perecedero extends Producto{
 	private Date fechaVencimiento;
 	
-	public Perecedero(String nombre, int codigo, int valorU, String desc, Date fechaVencimiento) {
-		super(nombre, codigo, valorU, desc);
+	public Perecedero(String nombre, String codigo, int valorU, String desc, int Udisponibles, Date fechaVencimiento) {
+		super(nombre, codigo, valorU, desc, Udisponibles);
 		this.fechaVencimiento = fechaVencimiento;  
 	}
 }

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Producto {
 	//Creados mediante la interfaz
 	private static ArrayList<Producto> productosCreados = new ArrayList<>();
-	private int codigo, valorUnitario;
-	private String descripcion, nombre;
+	private int valorUnitario;
+	private String descripcion, nombre, codigo;
 	private int cantidadExistente;
 	
-	public Producto(String nombre, int codigo, int valorUnitario, String desc, int cantidad) {
+	public Producto(String nombre, String codigo, int valorUnitario, String desc, int cantidad) {
 		this.nombre = nombre;
 		this.codigo = codigo;
 		this.valorUnitario = valorUnitario;
@@ -23,6 +23,10 @@ public class Producto {
 	
 	public String getNombre() {
 		return this.nombre;
+	}
+	
+	public String getCodigo() {
+		return this.codigo;
 	}
 	
 	public static ArrayList<Producto> getProductosCreados() {

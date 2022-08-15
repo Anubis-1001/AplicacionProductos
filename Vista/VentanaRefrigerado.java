@@ -12,8 +12,8 @@ import javafx.scene.control.TextInputControl;
 public class VentanaRefrigerado extends GridPane{
 	public VentanaRefrigerado(){
 		
-		agregarEntrada("codigo aprobacion", new TextField(), "ingrese el codigo de aprobacion", 0);
-		agregarEntrada("temperatura optima", new TextField(), "ingrese la temperatura recomendada ", 1);
+		agregarEntrada("Codigo aprobacion", new TextField(), "ingrese el codigo de aprobacion", 0);
+		agregarEntrada("Temperatura optima", new TextField(), "ingrese la temperatura recomendada ", 1);
 		this.setPadding(new Insets(2));
 		
 		this.setHgap(10);
@@ -24,6 +24,7 @@ public class VentanaRefrigerado extends GridPane{
 	
 	public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila) {
 		Label subtitulo = new Label(etiqueta);
+		campo.setId(etiqueta);
 		campo.setPromptText(indicacion);
 		this.setConstraints(subtitulo, 0, fila);
 		this.setConstraints(campo, 1, fila);

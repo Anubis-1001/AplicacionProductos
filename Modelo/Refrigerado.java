@@ -2,11 +2,11 @@ package Modelo;
 
 public class Refrigerado extends Producto{
 	
-	int codigoControl;
+	String codigoControl;
 	int temperaturaOptima;
 	
-	public Refrigerado(String nombre, int codigo, int valorU, String desc, int codigoControl, int temperatura) {
-		super(nombre, codigo, valorU, desc);
+	public Refrigerado(String nombre, String codigo, int valorU, String desc, int Udisponibles, String codigoControl, int temperatura) {
+		super(nombre, codigo, valorU, desc, Udisponibles);
 		this.codigoControl = codigoControl;
 		this.temperaturaOptima = temperatura;
 	}

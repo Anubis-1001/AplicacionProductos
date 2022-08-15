@@ -1,6 +1,8 @@
 package Vista;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import Modelo.Producto;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
@@ -19,7 +21,7 @@ import javafx.stage.Stage;
 
 public class VentanaProducto extends Scene{
 	private GridPane subFormulario;
-	private ArrayList<String> c;
+	private HashMap<String, String> c;
 	private Button crear;
 	private TextInputControl nombreCampo, idCampo, valorUCampo, descCampo, cantidadCampo;
 	private ComboBox<String> listaTipos;
@@ -34,7 +36,7 @@ public class VentanaProducto extends Scene{
 		
 		
 		idCampo = new TextField();
-		agregarEntrada("Id", idCampo, "ingrese su id", 1, cuadricula);
+		agregarEntrada("codigo", idCampo, "ingrese el codigo del producto", 1, cuadricula);
 		
 		descCampo = new TextArea();
 		agregarEntrada("Descripcion", descCampo, "ingrese una descripcion del producto", 2, cuadricula);
@@ -45,7 +47,7 @@ public class VentanaProducto extends Scene{
 		cantidadCampo = new TextField();
 		agregarEntrada("Cantidad diisponible", cantidadCampo, "ingrese la cantidad disponible", 4, cuadricula);
 		
-		c = new ArrayList<>();
+		c = new HashMap<String, String>();
 		
 		
 		crear = new Button("Agregar");
@@ -101,30 +103,33 @@ public class VentanaProducto extends Scene{
 	
 	//Muestra la ventana y devuelve un array con los datos del formulario
 	//cuando se presiona en agregar
-	public ArrayList<String> display(){
+	public HashMap<String,String> display(){
 		Stage window = new Stage();
 		crear.setOnAction(e->{
 			try {
 				//agrega los valores del formulario al arraylist de strings
 				//es normal que lance excepciones, ya que no todos los elementos del
 				//formulario son campos para poner texto, algunos son etiquetas
-				c.add(listaTipos.getValue());
-				c.add(nombreCampo.getText());
-				c.add(idCampo.getText());
-				c.add(valorUCampo.getText());
-				c.add(descCampo.getText());
-				c.add(cantidadCampo.getText());
+				c.put("tipoProducto",listaTipos.getValue());
+				c.put("nombre",nombreCampo.getText());
+				c.put("id",idCampo.getText());
+				c.put("valorUnitario",valorUCampo.getText());
+				c.put("descripcion", descCampo.getText());
+				c.put("cantidadDisponible",cantidadCampo.getText());
 				
 
 				for(Node node: subFormulario.getChildren()) {
 					try {
-						c.add(((TextInputControl) node).getText());
+						TextInputControl entradaCampo = (TextInputControl)node;
+						c.put(entradaCampo.getId(), entradaCampo.getText());
 					}
 					catch(Exception excp) {
 						System.out.println(excp);
 					}
 					try {
-						c.add(((ComboBox<String>) node).getValue());
+						ComboBox<String> entradaCampo = (ComboBox<String>) node;
+						c.put(entradaCampo.getId(), entradaCampo.getValue());
+						//c.put(((ComboBox<String>) node).getValue());
 					}
 					catch(Exception excp) {
 						System.out.println(excp);

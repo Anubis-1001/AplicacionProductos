@@ -12,6 +12,7 @@ public class VentanaPerecedero extends GridPane{
 		Label fechaVen = new Label("Fecha de vencimiento");
 		TextField fechaVCampo= new TextField();
 		fechaVCampo.setPromptText("ingrese la fecha de vencimiento");
+		fechaVCampo.setId("Fecha de vencimiento");
 		this.setHgap(10);
 		this.setVgap(10);
 		this.setConstraints(fechaVen, 0,0);

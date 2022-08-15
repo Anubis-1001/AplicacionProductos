@@ -28,6 +28,8 @@ public class Main extends Application{
 	public void start(Stage window) {
 		VentanaProducto ventana= new VentanaProducto(new GridPane());
 		ArrayList<String> atributosProd = ventana.display();
+		//Obtiene e imprime los datos del formulario una vez se envia
+		//La idea es crear un objeto del tipo Producto conestos
 		System.out.println(atributosProd.get(0));
 		System.out.println(atributosProd.get(1));
 		System.out.println(atributosProd.get(1));

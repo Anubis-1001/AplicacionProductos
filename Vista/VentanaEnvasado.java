@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.TextInputControl;
 
 
+//Crea el subformulario para los productos envasados
 public class VentanaEnvasado extends GridPane{
 	VentanaEnvasado(){
 		

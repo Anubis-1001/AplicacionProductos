@@ -8,6 +8,7 @@ import javafx.scene.control.TextInputControl;
 
 
 
+//Crea el subformulario para los productos refrigerados
 public class VentanaRefrigerado extends GridPane{
 	public VentanaRefrigerado(){
 		

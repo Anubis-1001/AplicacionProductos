@@ -28,7 +28,7 @@ public class Main extends Application{
 		VentanaLecturaProducto ventanaProd = new VentanaLecturaProducto(inventarioProductos);
 		ventanaProd.display();
 		
-		VentanaProducto ventana= new VentanaProducto(new GridPane());
+		VentanaProducto ventana= new VentanaProducto();
 		HashMap<String, String> attProd = ventana.display();
 		//Crea un objeto del tipo producto con los datos enviados por la ventana
 		Producto producto = null;

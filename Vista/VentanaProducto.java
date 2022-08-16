@@ -19,18 +19,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class VentanaProducto extends Scene{
+public class VentanaProducto extends Stage{
 	private GridPane subFormulario;
 	private HashMap<String, String> c;
 	private Button crear;
+	private Scene scene;
 	private TextInputControl nombreCampo, idCampo, valorUCampo, descCampo, cantidadCampo;
 	private ComboBox<String> listaTipos;
 	
 	
 	//El constructor crea la ventana para crear un producto de cualquier tipo
-	public VentanaProducto(GridPane cuadricula){
-		super(cuadricula, 700, 500);
+	public VentanaProducto(){
 		
+		GridPane cuadricula = new GridPane();
 		nombreCampo = new TextField();
 		agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula);
 		
@@ -88,8 +89,9 @@ public class VentanaProducto extends Scene{
 		cuadricula.setHgap(10);
 		cuadricula.setVgap(10);
 		
-		
 		cuadricula.getChildren().addAll(listaTipos, crear);
+		
+		scene = new Scene(cuadricula, 700, 500);
 	}
 	
 	//Agrega una etiqueta y campo para escribir texto
@@ -104,7 +106,6 @@ public class VentanaProducto extends Scene{
 	//Muestra la ventana y devuelve un array con los datos del formulario
 	//cuando se presiona en agregar
 	public HashMap<String,String> display(){
-		Stage window = new Stage();
 		crear.setOnAction(e->{
 			try {
 				//agrega los valores del formulario al arraylist de strings
@@ -141,12 +142,12 @@ public class VentanaProducto extends Scene{
 				System.out.println(excp);
 			}
 			
-			window.close();
+			this.close();
 		});
 		
 		
-		window.setScene(this);
-		window.showAndWait();
+		this.setScene(scene);
+		this.showAndWait();
 		return this.c;
 		
 	}

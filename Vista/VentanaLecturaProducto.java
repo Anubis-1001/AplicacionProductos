@@ -23,26 +23,68 @@ import javafx.stage.Stage;
 
 public class VentanaLecturaProducto extends Stage{
 	
+	private Button botonAgregar;
+	private Button botonActualizar;
+	private Button botonBorrar;
+	private Scene scene;
+	private String flag;
+	private ListView<String> listaDispo = new ListView<>();
+	
 	public VentanaLecturaProducto(HashMap<String, Producto> listasProd) {
-		ListView<String> listaDispo = new ListView<>();
 		
 		for(String item: listasProd.keySet()) {
 			listaDispo.getItems().add(item);
 		}
 		
-		Button botonAgregar = new Button("agregar");
-		Button botonActualizar = new Button("actualizar");
-		Button botonBorrar = new Button("borrar");
+		botonAgregar = new Button("agregar");
+		botonActualizar = new Button("actualizar");
+		botonBorrar = new Button("borrar");
 		
 		VBox panel = new VBox(10);
 		panel.setPadding(new Insets(10));
 		panel.getChildren().addAll(listaDispo, botonAgregar, botonActualizar, botonBorrar);
 		
-		Scene scene = new Scene(panel, 400,500);
+		scene = new Scene(panel, 400,500);
 		this.setScene(scene);
 	}
 	
-	public void display() {
+	public String display() {
+		
+		
+		botonAgregar.setOnAction(e->{
+			try {
+				flag = "agregar";
+				this.close();
+			} catch (Exception e2) {
+			}
+		});
+		
+		botonActualizar.setOnAction(e->{
+			try {
+				flag = "actualizar";
+				this.close();
+			} catch (Exception e2) {
+			}
+		});
+		
+		botonBorrar.setOnAction(e->{
+			try {
+				flag = "borrar";
+				this.close();
+			} catch (Exception e2) {
+			}
+		});
 		this.showAndWait();
+		return flag;
+		
+		
+		
+	}
+
+	public void setListaDispo(HashMap<String, Producto> listasProd) {
+		listaDispo= new ListView<>();
+		for(String item: listasProd.keySet()) {
+			listaDispo.getItems().add(item);
+		}
 	}
 }

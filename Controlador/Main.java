@@ -21,19 +21,26 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage window) {
-		
-		
-		
 		HashMap<String, Producto> inventarioProductos = new HashMap<>();
-		VentanaLecturaProducto ventanaProd = new VentanaLecturaProducto(inventarioProductos);
-		ventanaProd.display();
 		
+		while(true){
+		HashMap<String, String> attProd = new HashMap<>();
+		VentanaLecturaProducto ventanaProd = new VentanaLecturaProducto(inventarioProductos);
 		VentanaProducto ventana= new VentanaProducto();
-		HashMap<String, String> attProd = ventana.display();
+		String tipoVentana = ventanaProd.display();
+		if (tipoVentana == "agregar") {
+			attProd = ventana.getInfo();
+			ventana.display();	
+			
+		}
+		else {
+			System.out.print("a");
+		}
+		
 		//Crea un objeto del tipo producto con los datos enviados por la ventana
-		Producto producto = null;
+		Producto producto;
 		String nombre  = attProd.get("nombre");
-		String codigo = attProd.get("codigo");
+		String codigo = attProd.get("id");
 		int valorU = Integer.parseInt(attProd.get("valorUnitario"));
 		String desc = attProd.get("descripcion");
 		int cantidad = Integer.parseInt(attProd.get("cantidadDisponible"));
@@ -51,13 +58,21 @@ public class Main extends Application{
 		}
 		else {
 			crearObjeto = false;
+			producto = null;
 		}
 		
 		if(crearObjeto) {
-			inventarioProductos.put(producto.getCodigo(), producto);
+			inventarioProductos.put(codigo, producto);
 		}
-		
+		System.out.println(codigo);
+
+		ventanaProd = new VentanaLecturaProducto(inventarioProductos);
+		System.out.println(inventarioProductos.get(codigo));
+		System.out.println(codigo);
+		}
 	}
+	
+	
 	
 	public Date parseFecha(String fecha) {
 		

@@ -105,7 +105,7 @@ public class VentanaProducto extends Stage{
 	
 	//Muestra la ventana y devuelve un array con los datos del formulario
 	//cuando se presiona en agregar
-	public HashMap<String,String> display(){
+	public HashMap<String,String> getInfo(){
 		crear.setOnAction(e->{
 			try {
 				//agrega los valores del formulario al arraylist de strings
@@ -145,10 +145,15 @@ public class VentanaProducto extends Stage{
 			this.close();
 		});
 		
-		
-		this.setScene(scene);
-		this.showAndWait();
 		return this.c;
 		
 	}
+
+	
+	public void display() {
+		this.setScene(scene);
+		this.showAndWait();
+	}
 }
+
+

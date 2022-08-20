@@ -1,6 +1,7 @@
 package Controlador;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -22,18 +23,26 @@ public class Main extends Application{
 	@Override
 	public void start(Stage window) {
 		HashMap<String, Producto> inventarioProductos = new HashMap<>();
+		//temporal arraylist - creo que es mejor cambiar los hashmaps
+		ArrayList <Producto> prodArray = new ArrayList<Producto>();
 		
 		while(true){
 		HashMap<String, String> attProd = new HashMap<>();
 		VentanaLecturaProducto ventanaProd = new VentanaLecturaProducto(inventarioProductos);
-		VentanaProducto ventana= new VentanaProducto();
+		VentanaProducto ventana= new VentanaProducto(new Producto());
 		String tipoVentana = ventanaProd.display();
 		if (tipoVentana == "agregar") {
 			attProd = ventana.getInfo();
 			ventana.display();	
-			
 		}
+		
 		else {
+			if (tipoVentana == "actualizar" && ventanaProd.getListaDispo().getSelectionModel().getSelectedItem() != null ) {
+				attProd = ventana.getInfo();
+				ventana= new VentanaProducto(prodArray.get(Integer.parseInt(ventanaProd.getListaDispo().getSelectionModel().getSelectedItem()) - 1));
+				ventana.display();	
+				
+			}
 			System.out.print("a");
 		}
 		
@@ -63,12 +72,10 @@ public class Main extends Application{
 		
 		if(crearObjeto) {
 			inventarioProductos.put(codigo, producto);
+			prodArray.add(producto);
 		}
-		System.out.println(codigo);
-
 		ventanaProd = new VentanaLecturaProducto(inventarioProductos);
-		System.out.println(inventarioProductos.get(codigo));
-		System.out.println(codigo);
+
 		}
 	}
 	

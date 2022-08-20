@@ -29,24 +29,25 @@ public class VentanaProducto extends Stage{
 	
 	
 	//El constructor crea la ventana para crear un producto de cualquier tipo
-	public VentanaProducto(){
+	// la ventana pide un objeto producto para imprimir los valore scuando le damos a actualizar
+	public VentanaProducto(Producto producto){
 		
 		GridPane cuadricula = new GridPane();
 		nombreCampo = new TextField();
-		agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula);
+		agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula, producto.getNombre());
 		
 		
 		idCampo = new TextField();
-		agregarEntrada("codigo", idCampo, "ingrese el codigo del producto", 1, cuadricula);
+		agregarEntrada("codigo", idCampo, "ingrese el codigo del producto", 1, cuadricula, producto.getCodigo());
 		
 		descCampo = new TextArea();
-		agregarEntrada("Descripcion", descCampo, "ingrese una descripcion del producto", 2, cuadricula);
+		agregarEntrada("Descripcion", descCampo, "ingrese una descripcion del producto", 2, cuadricula, producto.getDescripcion());
 		
 		valorUCampo = new TextField();
-		agregarEntrada("Valor unitario", valorUCampo, "ingrese el valor por unidad", 3, cuadricula);
+		agregarEntrada("Valor unitario", valorUCampo, "ingrese el valor por unidad", 3, cuadricula, Integer.toString(producto.getValorUnitario()));
 				
 		cantidadCampo = new TextField();
-		agregarEntrada("Cantidad diisponible", cantidadCampo, "ingrese la cantidad disponible", 4, cuadricula);
+		agregarEntrada("Cantidad diisponible", cantidadCampo, "ingrese la cantidad disponible", 4, cuadricula, Integer.toString(producto.getCantidadExistente()));
 		
 		c = new HashMap<String, String>();
 		
@@ -94,10 +95,14 @@ public class VentanaProducto extends Stage{
 		scene = new Scene(cuadricula, 700, 500);
 	}
 	
+	
+
+	
 	//Agrega una etiqueta y campo para escribir texto
-	public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula) {
+	public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula, String textoInicial) {
 		Label subtitulo = new Label(etiqueta);
 		campo.setPromptText(indicacion);
+		campo.setText(textoInicial);
 		cuadricula.setConstraints(subtitulo, 0, fila);
 		cuadricula.setConstraints(campo, 1, fila);
 		cuadricula.getChildren().addAll(subtitulo, campo);

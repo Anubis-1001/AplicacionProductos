@@ -80,6 +80,18 @@ public class VentanaLecturaProducto extends Stage{
 		
 		
 	}
+	
+
+	public ListView<String> getListaDispo() {
+		
+		
+		
+		return listaDispo;
+	}
+
+	public void setListaDispo(ListView<String> listaDispo) {
+		this.listaDispo = listaDispo;
+	}
 
 	public void setListaDispo(HashMap<String, Producto> listasProd) {
 		listaDispo= new ListView<>();

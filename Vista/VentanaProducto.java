@@ -1,8 +1,8 @@
 package Vista;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
+import java.util.HashMap;
 import Modelo.Producto;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
@@ -120,20 +120,14 @@ public class VentanaProducto extends Stage{
 				
 
 				for(Node node: subFormulario.getChildren()) {
-					try {
+					if(node instanceof TextInputControl) {
 						TextInputControl entradaCampo = (TextInputControl)node;
 						c.put(entradaCampo.getId(), entradaCampo.getText());
 					}
-					catch(Exception excp) {
-						System.out.println(excp);
-					}
-					try {
+					else if(node instanceof ComboBox){
 						ComboBox<String> entradaCampo = (ComboBox<String>) node;
 						c.put(entradaCampo.getId(), entradaCampo.getValue());
 						//c.put(((ComboBox<String>) node).getValue());
-					}
-					catch(Exception excp) {
-						System.out.println(excp);
 					}
 				}
 			}

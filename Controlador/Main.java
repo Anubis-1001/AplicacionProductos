@@ -2,10 +2,14 @@ package Controlador;
 
 
 import java.util.Date;
+
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import Vista.VentanaProducto;
+import Vista.VentanaTransaccion;
 import Vista.VentanaLecturaProducto;
+import Vista.VentanaPrincipal;
 import Modelo.*;
 import javafx.scene.layout.GridPane;
 import javafx.application.Application;
@@ -21,7 +25,14 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage window) {
-		HashMap<String, Producto> inventarioProductos = new HashMap<>();
+		
+		VentanaPrincipal menu = new VentanaPrincipal();
+		menu.show();
+		/*VentanaTransaccion ventanaTransaccion = new VentanaTransaccion(new ArrayList<Producto>());
+		ventanaTransaccion.show();
+		*/
+		
+		/*HashMap<String, Producto> inventarioProductos = new HashMap<>();
 		
 		while(true){
 		HashMap<String, String> attProd = new HashMap<>();
@@ -69,7 +80,7 @@ public class Main extends Application{
 		ventanaProd = new VentanaLecturaProducto(inventarioProductos);
 		System.out.println(inventarioProductos.get(codigo));
 		System.out.println(codigo);
-		}
+		}*/
 	}
 	
 	

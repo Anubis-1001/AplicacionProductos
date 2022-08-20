@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import Vista.VentanaClientes;
 import Vista.VentanaProducto;
 import Vista.VentanaLecturaProducto;
 import Modelo.*;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javafx.stage.Stage;
 
+import Modelo.*;
 public class Main extends Application{
 	public static void main(String[] args) {
 		launch(args);
@@ -28,12 +30,15 @@ public class Main extends Application{
 		
 		while(true){
 		HashMap<String, String> attProd = new HashMap<>();
+		Direccion dir = new Direccion(1, 1, "Armenia", "Quindío");
+		Cliente cliente = new Cliente("Juan", 123, dir, 312345);
 		VentanaLecturaProducto ventanaProd = new VentanaLecturaProducto(inventarioProductos);
 		VentanaProducto ventana= new VentanaProducto(new Producto());
+		VentanaClientes ventanac = new VentanaClientes(cliente);
 		String tipoVentana = ventanaProd.display();
 		if (tipoVentana == "agregar") {
 			attProd = ventana.getInfo();
-			ventana.display();	
+			ventanac.display();
 		}
 		
 		else {

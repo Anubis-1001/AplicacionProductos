@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import Vista.VentanaClientes;
+import Vista.VentanaIngresoClientes;
 import Vista.VentanaProducto;
 import Vista.VentanaLecturaProducto;
 import Modelo.*;
-import javafx.scene.layout.GridPane;
 import javafx.application.Application;
 import java.text.DateFormat;
 
 import java.text.SimpleDateFormat;
 import javafx.stage.Stage;
 
-import Modelo.*;
 public class Main extends Application{
 	public static void main(String[] args) {
 		launch(args);
@@ -34,7 +32,7 @@ public class Main extends Application{
 		Cliente cliente = new Cliente("Juan", 123, dir, 312345);
 		VentanaLecturaProducto ventanaProd = new VentanaLecturaProducto(inventarioProductos);
 		VentanaProducto ventana= new VentanaProducto(new Producto());
-		VentanaClientes ventanac = new VentanaClientes(cliente);
+		VentanaIngresoClientes ventanac = new VentanaIngresoClientes(cliente);
 		String tipoVentana = ventanaProd.display();
 		if (tipoVentana == "agregar") {
 			attProd = ventana.getInfo();

@@ -2,8 +2,11 @@ package Vista;
 
 import java.util.ArrayList;
 
+
 import java.util.HashMap;
 import Modelo.Producto;
+import Modelo.Cliente;
+import Modelo.Direccion;
 import Controlador.Main;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
@@ -33,9 +36,18 @@ public class VentanaPrincipal extends Scene {
 		});
 		
 		Button botonClientes = new Button("clientes");
+		
+		botonClientes.setOnAction(e->{
+			Direccion dir = new Direccion(1, 1, "Armenia", "Quindío");
+			Cliente cliente = new Cliente("Juan", 123, dir, 312345);
+			VentanaIngresoClientes ventanaClientes = new VentanaIngresoClientes(cliente); 
+			ventanaClientes.show();
+		});
+		
 		Button botonTransacciones = new Button("transacciones");
 		
 		botonTransacciones.setOnAction(e->{
+			
 			VentanaTransaccion ventanaTransaccion = new VentanaTransaccion(new VBox(10), ventana, new ArrayList<Producto>()); 
 			ventana.setScene(ventanaTransaccion);
 		});

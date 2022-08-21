@@ -17,24 +17,6 @@ public class Producto {
 		this.cantidadExistente = cantidad;
 	}
 	
-	public Producto() {
-		this.nombre = "";
-		this.codigo = "";
-		this.valorUnitario = 0;
-		this.descripcion = ""; 
-		this.cantidadExistente = 0;
-	}
-	
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-
-	public int getCantidadExistente() {
-		return cantidadExistente;
-	}
-
-
 	public int getValorUnitario() {
 		return this.valorUnitario;
 	}

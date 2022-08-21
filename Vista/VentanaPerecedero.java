@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 //Crea el subformulario para los productos perecederos
 public class VentanaPerecedero extends GridPane{
 	public VentanaPerecedero(){
-		
 		Label fechaVen = new Label("Fecha de vencimiento");
 		TextField fechaVCampo= new TextField();
 		fechaVCampo.setPromptText("ingrese la fecha de vencimiento");

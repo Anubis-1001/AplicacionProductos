@@ -2,11 +2,10 @@ package Modelo;
 
 public class PersonaJuridica extends Cliente {
 	int nit;
-	int idTributaria;
-	
-	public PersonaJuridica(String nombre, int id, Direccion dir, int tel, int nit, int idTributaria) {
+
+	public PersonaJuridica(String nombre, String id, String dir, String tel, int nit) {
 		super(nombre, id, dir, tel);
 		this.nit = nit;
-		this.idTributaria = idTributaria;
+
 	}
 }

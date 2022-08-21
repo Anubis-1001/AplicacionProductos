@@ -1,8 +1,6 @@
 package Vista;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import Modelo.Envasado;
 import Modelo.Perecedero;
 import Modelo.Producto;
@@ -10,7 +8,6 @@ import Modelo.Refrigerado;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
@@ -32,25 +29,24 @@ public class VentanaProducto extends Stage{
 	
 	
 	//El constructor crea la ventana para crear un producto de cualquier tipo
-	// la ventana pide un objeto producto para imprimir los valore scuando le damos a actualizar
 	public VentanaProducto(Producto producto){
 		
 		GridPane cuadricula = new GridPane();
 		nombreCampo = new TextField();
-		agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula, producto.getNombre());
+		agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula);
 		
 		
 		idCampo = new TextField();
-		agregarEntrada("codigo", idCampo, "ingrese el codigo del producto", 1, cuadricula, producto.getCodigo());
+		agregarEntrada("codigo", idCampo, "ingrese el codigo del producto", 1, cuadricula);
 		
 		descCampo = new TextArea();
-		agregarEntrada("Descripcion", descCampo, "ingrese una descripcion del producto", 2, cuadricula, producto.getDescripcion());
+		agregarEntrada("Descripcion", descCampo, "ingrese una descripcion del producto", 2, cuadricula);
 		
 		valorUCampo = new TextField();
-		agregarEntrada("Valor unitario", valorUCampo, "ingrese el valor por unidad", 3, cuadricula, Integer.toString(producto.getValorUnitario()));
+		agregarEntrada("Valor unitario", valorUCampo, "ingrese el valor por unidad", 3, cuadricula);
 				
 		cantidadCampo = new TextField();
-		agregarEntrada("Cantidad disponible", cantidadCampo, "ingrese la cantidad disponible", 4, cuadricula, Integer.toString(producto.getCantidadExistente()));
+		agregarEntrada("Cantidad disponible", cantidadCampo, "ingrese la cantidad disponible", 4, cuadricula);
 		
 		c = new HashMap<String, String>();
 		
@@ -58,6 +54,28 @@ public class VentanaProducto extends Stage{
 		cuadricula.setConstraints(crear, 1,7);
 		cuadricula.setHalignment(crear, HPos.CENTER);
 		
+		crear.setOnAction(e->{
+			c.put("tipoProducto",listaTipos.getValue());
+			c.put("nombre",nombreCampo.getText());
+			c.put("id",idCampo.getText());
+			c.put("valorUnitario",valorUCampo.getText());
+			c.put("descripcion", descCampo.getText());
+			c.put("cantidadDisponible",cantidadCampo.getText());
+			
+			for(Node node: subFormulario.getChildren()) {
+				if(node instanceof TextInputControl) {
+					TextInputControl entradaCampo = (TextInputControl)node;
+					c.put(entradaCampo.getId(), entradaCampo.getText());
+				}
+				
+				else if(node instanceof ComboBox){
+					ComboBox<String> entradaCampo = (ComboBox<String>) node;
+					c.put(entradaCampo.getId(), entradaCampo.getValue());
+				}
+			}
+		
+		this.close();
+	});
 		listaTipos = new ComboBox<>();
 		listaTipos.getItems().addAll("Envasado", "Perecedero", "Refrigerado");
 		cuadricula.setConstraints(listaTipos, 1, 5);
@@ -118,14 +136,10 @@ public class VentanaProducto extends Stage{
 			
 	}
 	
-	
-
-	
 	//Agrega una etiqueta y campo para escribir texto
-	public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula, String textoInicial) {
+	public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula) {
 		Label subtitulo = new Label(etiqueta);
 		campo.setPromptText(indicacion);
-		campo.setText(textoInicial);
 		cuadricula.setConstraints(subtitulo, 0, fila);
 		cuadricula.setConstraints(campo, 1, fila);
 		cuadricula.getChildren().addAll(subtitulo, campo);
@@ -133,54 +147,11 @@ public class VentanaProducto extends Stage{
 	
 	//Muestra la ventana y devuelve un array con los datos del formulario
 	//cuando se presiona en agregar
-	public HashMap<String,String> getInfo(){
-		crear.setOnAction(e->{
-			try {
-				//agrega los valores del formulario al arraylist de strings
-				//es normal que lance excepciones, ya que no todos los elementos del
-				//formulario son campos para poner texto, algunos son etiquetas
-				c.put("tipoProducto",listaTipos.getValue());
-				c.put("nombre",nombreCampo.getText());
-				c.put("id",idCampo.getText());
-				c.put("valorUnitario",valorUCampo.getText());
-				c.put("descripcion", descCampo.getText());
-				c.put("cantidadDisponible",cantidadCampo.getText());
-				
-
-				for(Node node: subFormulario.getChildren()) {
-					try {
-						TextInputControl entradaCampo = (TextInputControl)node;
-						c.put(entradaCampo.getId(), entradaCampo.getText());
-					}
-					catch(Exception excp) {
-						System.out.println(excp);
-					}
-					try {
-						ComboBox<String> entradaCampo = (ComboBox<String>) node;
-						c.put(entradaCampo.getId(), entradaCampo.getValue());
-						//c.put(((ComboBox<String>) node).getValue());
-					}
-					catch(Exception excp) {
-						System.out.println(excp);
-					}
-				}
-			}
-		
-			catch(Exception excp) {
-				System.out.println(excp);
-			}
-			
-			this.close();
-		});
-		
-		return this.c;
-		
-	}
-
 	
-	public void display() {
+	public HashMap<String,String>  display() {
 		this.setScene(scene);
 		this.showAndWait();
+		return this.c;
 	}
 }
 

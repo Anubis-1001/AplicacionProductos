@@ -10,4 +10,12 @@ public class Refrigerado extends Producto{
 		this.codigoControl = codigoControl;
 		this.temperaturaOptima = temperatura;
 	}
+
+	public String getCodigoControl() {
+		return codigoControl;
+	}
+
+	public int getTemperaturaOptima() {
+		return temperaturaOptima;
+	}
 }

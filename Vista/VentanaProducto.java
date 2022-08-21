@@ -3,7 +3,10 @@ package Vista;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Modelo.Envasado;
+import Modelo.Perecedero;
 import Modelo.Producto;
+import Modelo.Refrigerado;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
@@ -47,21 +50,40 @@ public class VentanaProducto extends Stage{
 		agregarEntrada("Valor unitario", valorUCampo, "ingrese el valor por unidad", 3, cuadricula, Integer.toString(producto.getValorUnitario()));
 				
 		cantidadCampo = new TextField();
-		agregarEntrada("Cantidad diisponible", cantidadCampo, "ingrese la cantidad disponible", 4, cuadricula, Integer.toString(producto.getCantidadExistente()));
+		agregarEntrada("Cantidad disponible", cantidadCampo, "ingrese la cantidad disponible", 4, cuadricula, Integer.toString(producto.getCantidadExistente()));
 		
 		c = new HashMap<String, String>();
 		
-		
 		crear = new Button("Agregar");
-		cuadricula.setConstraints(crear, 1,6);
+		cuadricula.setConstraints(crear, 1,7);
 		cuadricula.setHalignment(crear, HPos.CENTER);
-		
-		
 		
 		listaTipos = new ComboBox<>();
 		listaTipos.getItems().addAll("Envasado", "Perecedero", "Refrigerado");
-		listaTipos.setPromptText("seleccione el tipo de producto");
 		cuadricula.setConstraints(listaTipos, 1, 5);
+		
+		if (producto instanceof Envasado) {
+			listaTipos.setValue("Envasado");
+			subFormulario = new VentanaEnvasado((Envasado) producto);
+			cuadricula.setConstraints(subFormulario, 1, 6);
+			cuadricula.getChildren().add(subFormulario);
+		} else {
+			if(producto instanceof Perecedero) {
+				listaTipos.setValue("Perecedero");
+				subFormulario = new VentanaPerecedero((Perecedero) producto);
+				cuadricula.setConstraints(subFormulario, 1, 6);
+				cuadricula.getChildren().add(subFormulario);
+			} else {
+				if (producto instanceof Refrigerado) {
+					listaTipos.setValue("Refrigerado");
+					subFormulario = new VentanaRefrigerado((Refrigerado) producto);
+					cuadricula.setConstraints(subFormulario, 1, 6);
+					cuadricula.getChildren().add(subFormulario);
+				} else {
+					listaTipos.setPromptText("seleccione el tipo de producto");
+				}
+		
+			}}
 		
 		listaTipos.setOnAction(e->{
 			cuadricula.getChildren().remove(subFormulario);
@@ -86,13 +108,14 @@ public class VentanaProducto extends Stage{
 		});
 		
 		
+		
+		
 		cuadricula.setPadding(new Insets(10,10,10,10));
 		cuadricula.setHgap(10);
 		cuadricula.setVgap(10);
-		
 		cuadricula.getChildren().addAll(listaTipos, crear);
-		
 		scene = new Scene(cuadricula, 700, 500);
+			
 	}
 	
 	

@@ -9,4 +9,8 @@ public class Perecedero extends Producto{
 		super(nombre, codigo, valorU, desc, Udisponibles);
 		this.fechaVencimiento = fechaVencimiento;  
 	}
+
+	public Date getFechaVencimiento() {
+		return fechaVencimiento;
+	}
 }

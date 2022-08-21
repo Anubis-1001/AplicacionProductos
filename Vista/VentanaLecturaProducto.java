@@ -83,9 +83,6 @@ public class VentanaLecturaProducto extends Stage{
 	
 
 	public ListView<String> getListaDispo() {
-		
-		
-		
 		return listaDispo;
 	}
 

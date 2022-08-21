@@ -3,6 +3,8 @@ package Controlador;
 
 import java.util.Date;
 
+
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ import Vista.VentanaLecturaProducto;
 import Vista.VentanaPrincipal;
 import Modelo.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.application.Application;
 import java.text.DateFormat;
 
@@ -19,6 +22,8 @@ import java.text.SimpleDateFormat;
 import javafx.stage.Stage;
 
 public class Main extends Application{
+	static HashMap<String, Producto> inventarioProd = new HashMap<>();
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -26,13 +31,14 @@ public class Main extends Application{
 	@Override
 	public void start(Stage window) {
 		
-		VentanaPrincipal menu = new VentanaPrincipal();
+		Stage menu = new Stage();
+		VentanaPrincipal principal = new VentanaPrincipal(new VBox(35), menu);
 		menu.show();
 		/*VentanaTransaccion ventanaTransaccion = new VentanaTransaccion(new ArrayList<Producto>());
 		ventanaTransaccion.show();
 		*/
 		
-		/*HashMap<String, Producto> inventarioProductos = new HashMap<>();
+		/*
 		
 		while(true){
 		HashMap<String, String> attProd = new HashMap<>();
@@ -48,33 +54,7 @@ public class Main extends Application{
 			System.out.print("a");
 		}
 		
-		//Crea un objeto del tipo producto con los datos enviados por la ventana
-		Producto producto;
-		String nombre  = attProd.get("nombre");
-		String codigo = attProd.get("id");
-		int valorU = Integer.parseInt(attProd.get("valorUnitario"));
-		String desc = attProd.get("descripcion");
-		int cantidad = Integer.parseInt(attProd.get("cantidadDisponible"));
-		boolean crearObjeto=true;
-		
-		if(attProd.get("tipoProducto") == "Envasado") {
-			producto = new Envasado(nombre, codigo, valorU, desc, cantidad, parseFecha(attProd.get("Fecha de envasado")), Double.parseDouble(attProd.get("Peso de envase")), attProd.get("Pais de origen"));
-		}
-		else if(attProd.get("tipoProducto") == "Refrigerado") {
-			producto = new Refrigerado(nombre, codigo, valorU, desc, cantidad,  attProd.get("Codigo aprobacion"), Integer.parseInt(attProd.get("Temperatura optima")));
-		}
-		
-		else if(attProd.get("tipoProducto") == "Perecedero") {
-			producto = new Perecedero(nombre, codigo, valorU, desc, cantidad,  parseFecha(attProd.get("Fecha de vencimiento")));
-		}
-		else {
-			crearObjeto = false;
-			producto = null;
-		}
-		
-		if(crearObjeto) {
-			inventarioProductos.put(codigo, producto);
-		}
+
 		System.out.println(codigo);
 
 		ventanaProd = new VentanaLecturaProducto(inventarioProductos);
@@ -83,18 +63,10 @@ public class Main extends Application{
 		}*/
 	}
 	
-	
-	
-	public Date parseFecha(String fecha) {
-		
-	    DateFormat DFormat = new SimpleDateFormat("dd/MM/yyyy");
-	    try {
-	    	return DFormat.parse(fecha);
-	    }
-	    catch(Exception e) {
-	    	return new Date();
-	    }
+	public static HashMap<String, Producto> getInventario() {
+		return inventarioProd;
 	}
 	
+		
 	
 }

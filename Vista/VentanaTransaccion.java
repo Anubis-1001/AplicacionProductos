@@ -1,7 +1,6 @@
 package Vista;
 
 import java.util.HashMap;
-
 import java.util.ArrayList;
 import Modelo.Producto;
 import javafx.scene.layout.VBox;
@@ -20,14 +19,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class VentanaTransaccion extends Stage{
+public class VentanaTransaccion extends Scene{
 	
 	private Stage productosDisponibles;
 	
-	public VentanaTransaccion(ArrayList<Producto> productos) {
-		
-		
-		VBox panel = new VBox(10);
+	public VentanaTransaccion(VBox panel, Stage ventana, ArrayList<Producto> productos) {
+		super(panel, 500, 700);
+		//VBox panel = new VBox(10);
 		
 		ListView<String> listaProductos = new ListView<>();
 		
@@ -41,14 +39,14 @@ public class VentanaTransaccion extends Stage{
 		});
 		
 		atras.setOnAction(e->{
-			
+			ventana.setScene(new VentanaPrincipal(new VBox(35), ventana));
 		});
 		
-		panel.getChildren().addAll(listaProductos, agregar);
+		panel.getChildren().addAll(atras, listaProductos, agregar);
 		panel.setPadding(new Insets(10));
 		
-		Scene escena = new Scene(panel, 500, 700);
-		this.setScene(escena);		
+		//Scene escena = new Scene(panel, 500, 700);
+		//this.setScene(escena);		
 	}
 	
 	public void inicializarVentana(ArrayList<Producto> productos) {
@@ -70,18 +68,13 @@ public class VentanaTransaccion extends Stage{
 		agregar.setOnAction(e->{
 			
 		});
-		
 		panel.getChildren().addAll(listaDisponibles, cantidad, agregar);
-		
 		panel.setPadding(new Insets(10));
 		
 		Scene escena = new Scene(panel, 500, 700);
 		
 		productosDisponibles = new Stage();
-		
-		
 		productosDisponibles.setScene(escena);
-		
-		
+				
 		}
 }

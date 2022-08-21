@@ -58,5 +58,40 @@ public static Date parseFecha(String fecha) {
 		}*/
 		
 		return producto;
-	} 
+	}
+
+
+	public static Cliente parseCliente(HashMap<String, String> atributosCliente) {
+
+		HashMap<String, Producto> inventarioClientes = new HashMap<>();
+		//Crea un objeto del tipo producto con los datos enviados por la ventana
+		Cliente cliente=null;
+		String nombre  = atributosCliente.get("nombre");
+		String id = atributosCliente.get("id");
+		System.out.println(id);
+		String direccion = atributosCliente.get("direccion");
+		String telefono = (atributosCliente.get("telefono"));
+		boolean crearObjeto=true;
+
+		if(atributosCliente.get("tipoCliente") == "Natural") {
+			cliente = new PersonaNatural(nombre, "", "", id, direccion, telefono, atributosCliente.get("E-Mail"), parseFecha(atributosCliente.get("Fecha de Nacimiento")) );
+		}
+		else if(atributosCliente.get("tipoCliente") == "Juridico") {
+			cliente = new PersonaJuridica(nombre, id, direccion, telefono, Integer.parseInt(atributosCliente.get("NIT")));
+		}
+
+
+		//se puede agregar una validacion de datos mas delante
+		/*else {
+			crearObjeto = false;
+			producto = null;
+		}*/
+
+		/*
+		if(crearObjeto) {
+			inventarioProductos.put(codigo, producto);
+		}*/
+
+		return cliente;
+	}
 }

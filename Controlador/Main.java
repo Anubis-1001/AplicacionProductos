@@ -23,7 +23,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	static HashMap<String, Producto> inventarioProd = new HashMap<>();
-	
+	static HashMap<String, Cliente> inventarioClientela = new HashMap<>();
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -65,6 +66,10 @@ public class Main extends Application{
 	
 	public static HashMap<String, Producto> getInventario() {
 		return inventarioProd;
+	}
+
+	public static HashMap<String, Cliente> getClientela() {
+		return inventarioClientela;
 	}
 	
 		

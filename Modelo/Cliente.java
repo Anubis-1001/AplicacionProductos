@@ -3,10 +3,11 @@ package Modelo;
 public class Cliente {
 	
 	private String nombre;
-	private int id, telefono;
-	private Direccion direccion;
+
+	private String id;
+	private String direccion, telefono;
 	
-	public Cliente(String nombre, int id, Direccion dir, int tel){
+	public Cliente(String nombre, String id, String dir, String tel){
 		this.nombre = nombre;
 		this.id = id;
 		this.direccion  = dir;
@@ -21,27 +22,27 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
-	public Direccion getDireccion() {
+	public String getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(Direccion direccion) {
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 }

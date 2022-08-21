@@ -22,21 +22,21 @@ public class VentanaIngresoClientes extends Stage {
     private ComboBox<String> listaTipos;
 
 
-    public VentanaIngresoClientes(Cliente cliente) {
+    public VentanaIngresoClientes() {
 
         GridPane cuadricula = new GridPane();
         nombreCampo = new TextField();
-        agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula, cliente.getNombre());
+        agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula);
 
 
         idCampo = new TextField();
-        agregarEntrada("Id", idCampo, "ingrese la identificación del cliente", 1, cuadricula, Integer.toString(cliente.getId()));
+        agregarEntrada("Id", idCampo, "ingrese la identificación del cliente", 1, cuadricula);
 
         telCampo = new TextArea();
-        agregarEntrada("Teléfono", telCampo, "ingrese el teléfono del cliente", 2, cuadricula, Integer.toString(cliente.getTelefono()));
+        agregarEntrada("Teléfono", telCampo, "ingrese el teléfono del cliente", 2, cuadricula);
 
         direccionCampo = new TextField();
-        agregarEntrada("Dirección", direccionCampo, "ingrese la dirección del cliente", 3, cuadricula, cliente.getDireccion().toString());
+        agregarEntrada("Dirección", direccionCampo, "ingrese la dirección del cliente", 3, cuadricula);
 
 
 
@@ -50,7 +50,7 @@ public class VentanaIngresoClientes extends Stage {
 
 
         listaTipos = new ComboBox<>();
-        listaTipos.getItems().addAll("Natural", "Jurídico");
+        listaTipos.getItems().addAll("Natural", "Juridico");
         listaTipos.setPromptText("Seleccione el tipo de cliente");
         cuadricula.setConstraints(listaTipos, 1, 5);
 
@@ -63,7 +63,7 @@ public class VentanaIngresoClientes extends Stage {
                 subFormulario = new VentanaClienteNatural();
             }
 
-            else if(listaTipos.getValue() == "Jurídico") {
+            else if(listaTipos.getValue() == "Juridico") {
                 subFormulario = new VentanaClienteJuridico();
             }
 
@@ -87,10 +87,10 @@ public class VentanaIngresoClientes extends Stage {
     }
 
     //Agrega una etiqueta y campo para escribir texto
-    public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula, String textoInicial) {
+    public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula) {
         Label subtitulo = new Label(etiqueta);
         campo.setPromptText(indicacion);
-        campo.setText(textoInicial);
+        //campo.setText(textoInicial);
         cuadricula.setConstraints(subtitulo, 0, fila);
         cuadricula.setConstraints(campo, 1, fila);
         cuadricula.getChildren().addAll(subtitulo, campo);

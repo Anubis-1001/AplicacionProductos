@@ -27,6 +27,11 @@ public static Date parseFecha(String fecha) {
 		return producto;
 	}
 	
+	public static Cliente createBlankClient() {
+		Cliente cliente = new Cliente();
+		return cliente;
+	}
+	
 	public static Producto parseProducto(HashMap<String, String> atributosProd) {
 		
 		HashMap<String, Producto> inventarioProductos = new HashMap<>();

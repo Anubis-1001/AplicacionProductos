@@ -8,4 +8,8 @@ public class PersonaJuridica extends Cliente {
 		this.nit = nit;
 
 	}
+
+	public int getNit() {
+		return nit;
+	}
 }

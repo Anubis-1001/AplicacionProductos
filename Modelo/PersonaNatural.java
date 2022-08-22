@@ -3,6 +3,7 @@ package Modelo;
 
 import java.util.Date;
 public class PersonaNatural extends Cliente{
+
 	private String email, primerApellido, segundoApellido;
 	private Date fechaNacimiento;
 	
@@ -13,4 +14,21 @@ public class PersonaNatural extends Cliente{
 		this.segundoApellido = apellido2;
 		this.fechaNacimiento = fecha;
 	}
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPrimerApellido() {
+		return primerApellido;
+	}
+
+	public String getSegundoApellido() {
+		return segundoApellido;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+
 }

@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 public class VentanaClientela extends Scene {
 
     private Button botonAgregar, botonActualizar, botonBorrar, botonAtras;
-    private Scene scene;
-    private String flag;
     private ListView<String> listaDispo = new ListView<>();
 
     public VentanaClientela(VBox panel, HashMap<String, Cliente> listasCliente, Stage ventana) {
@@ -31,10 +29,36 @@ public class VentanaClientela extends Scene {
         botonBorrar = new Button("borrar");
 
         botonAgregar.setOnAction(e->{
-            VentanaIngresoClientes ventanaClientes = new VentanaIngresoClientes();
+            VentanaIngresoClientes ventanaClientes = new VentanaIngresoClientes( Utilidades.createBlankClient() );
             Cliente cliente = Utilidades.parseCliente(ventanaClientes.display());
             listasCliente.put((cliente.getId()), cliente);
             listaDispo.getItems().add(String.valueOf(listasCliente.get(cliente.getId()).getId()));
+        });
+        
+        botonActualizar.setOnAction(e->{
+        	if (listaDispo.getSelectionModel().getSelectedItem() != null) {
+        		VentanaIngresoClientes ventanaClientes = new VentanaIngresoClientes( listasCliente.get(listaDispo.getSelectionModel().getSelectedItem()));
+                Cliente cliente = Utilidades.parseCliente(ventanaClientes.display());
+                
+                if (cliente.getId() == listaDispo.getSelectionModel().getSelectedItem()) {
+                    listasCliente.put((cliente.getId()), cliente);
+                } else {
+                    listasCliente.remove(listaDispo.getSelectionModel().getSelectedItem());
+                    listasCliente.put((cliente.getId()), cliente);
+                }
+
+                listaDispo.getItems().add(String.valueOf(listasCliente.get(cliente.getId()).getId()));
+        	}
+        	
+            
+            
+        });
+        
+        botonBorrar.setOnAction(e->{
+        	if (listaDispo.getSelectionModel().getSelectedItem() != null) {
+                listasCliente.remove(listaDispo.getSelectionModel().getSelectedItem());
+        	}
+
         });
 
         botonAtras.setOnAction(e->{

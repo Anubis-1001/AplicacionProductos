@@ -1,6 +1,9 @@
 package Vista;
 
 import Modelo.Cliente;
+import Modelo.PersonaNatural;
+import Modelo.PersonaJuridica;
+import Modelo.Refrigerado;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -22,21 +25,21 @@ public class VentanaIngresoClientes extends Stage {
     private ComboBox<String> listaTipos;
 
 
-    public VentanaIngresoClientes() {
+    public VentanaIngresoClientes(Cliente cliente) {
 
         GridPane cuadricula = new GridPane();
         nombreCampo = new TextField();
-        agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula);
+        agregarEntrada("Nombre", nombreCampo, "ingrese su nombre", 0, cuadricula, cliente.getNombre());
 
 
         idCampo = new TextField();
-        agregarEntrada("Id", idCampo, "ingrese la identificación del cliente", 1, cuadricula);
+        agregarEntrada("Id", idCampo, "ingrese la identificación del cliente", 1, cuadricula, cliente.getId());
 
         telCampo = new TextArea();
-        agregarEntrada("Teléfono", telCampo, "ingrese el teléfono del cliente", 2, cuadricula);
+        agregarEntrada("Teléfono", telCampo, "ingrese el teléfono del cliente", 2, cuadricula, cliente.getTelefono());
 
         direccionCampo = new TextField();
-        agregarEntrada("Dirección", direccionCampo, "ingrese la dirección del cliente", 3, cuadricula);
+        agregarEntrada("Dirección", direccionCampo, "ingrese la dirección del cliente", 3, cuadricula, cliente.getDireccion());
 
 
 
@@ -51,9 +54,28 @@ public class VentanaIngresoClientes extends Stage {
 
         listaTipos = new ComboBox<>();
         listaTipos.getItems().addAll("Natural", "Juridico");
-        listaTipos.setPromptText("Seleccione el tipo de cliente");
+
         cuadricula.setConstraints(listaTipos, 1, 5);
 
+        
+        if (cliente instanceof PersonaNatural) {
+			listaTipos.setValue("Natural");
+			subFormulario = new VentanaClienteNatural((PersonaNatural) cliente);
+			cuadricula.setConstraints(subFormulario, 1, 6);
+			cuadricula.getChildren().add(subFormulario);
+		} else {
+			if(cliente instanceof PersonaJuridica) {
+				listaTipos.setValue("Juridico");
+				subFormulario = new VentanaClienteJuridico((PersonaJuridica) cliente);
+				cuadricula.setConstraints(subFormulario, 1, 6);
+				cuadricula.getChildren().add(subFormulario);
+				} else {
+			        listaTipos.setPromptText("Seleccione el tipo de cliente");
+				}
+		
+			}
+        
+        
         listaTipos.setOnAction(e->{
             cuadricula.getChildren().remove(subFormulario);
             cuadricula.setConstraints(crear, 1, 7);
@@ -87,10 +109,10 @@ public class VentanaIngresoClientes extends Stage {
     }
 
     //Agrega una etiqueta y campo para escribir texto
-    public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula) {
+    public void agregarEntrada(String etiqueta, TextInputControl campo, String indicacion, int fila, GridPane cuadricula, String textoInicial) {
         Label subtitulo = new Label(etiqueta);
         campo.setPromptText(indicacion);
-        //campo.setText(textoInicial);
+        campo.setText(textoInicial);
         cuadricula.setConstraints(subtitulo, 0, fila);
         cuadricula.setConstraints(campo, 1, fila);
         cuadricula.getChildren().addAll(subtitulo, campo);

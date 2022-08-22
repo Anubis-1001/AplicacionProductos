@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 public class VentanaLecturaProducto extends Scene{
 	
 	private Button botonAgregar, botonActualizar, botonBorrar, botonAtras;
-	private Scene scene;
-	private String flag;
 	private ListView<String> listaDispo = new ListView<>();
 	
 	public VentanaLecturaProducto(VBox panel, HashMap<String, Producto> listasProd, Stage ventana) {
@@ -29,64 +27,45 @@ public class VentanaLecturaProducto extends Scene{
 		botonBorrar = new Button("borrar");
 		
 		botonAgregar.setOnAction(e->{
-			VentanaProducto ventanaProd = new VentanaProducto(null); //temp null
+			VentanaProducto ventanaProd = new VentanaProducto(Utilidades.createBlankProduct()); //temp null
 			Producto prod = Utilidades.parseProducto(ventanaProd.display());
 			listasProd.put(prod.getCodigo(), prod);
 			listaDispo.getItems().add(listasProd.get(prod.getCodigo()).getCodigo());
+		});
+		
+		botonActualizar.setOnAction(e->{
+			if (listaDispo.getSelectionModel().getSelectedItem() != null) {
+				VentanaProducto ventanaProd = new VentanaProducto( listasProd.get(listaDispo.getSelectionModel().getSelectedItem()) );
+				Producto prod = Utilidades.parseProducto(ventanaProd.display());
+				// pregunta si el codigo actualizado es el mismo, si lo es, reemplaza el ya existente
+				if (prod.getCodigo() == listaDispo.getSelectionModel().getSelectedItem()) {
+					listasProd.put(prod.getCodigo(), prod);
+				}
+				else { // de lo contrario, borra el anterior y añade el nuevo.
+					listasProd.remove(listaDispo.getSelectionModel().getSelectedItem());
+					listasProd.put(prod.getCodigo(), prod);
+
+				} // añade la nueva lista al list view.
+				listaDispo.getItems().add(listasProd.get(prod.getCodigo()).getCodigo());
+			}  
+		});
+		
+		botonBorrar.setOnAction(e->{
+			if (listaDispo.getSelectionModel().getSelectedItem() != null) {
+				listasProd.remove(listaDispo.getSelectionModel().getSelectedItem());
+
+			}
 		});
 		
 		botonAtras.setOnAction(e->{
 			ventana.setScene(new VentanaPrincipal(new VBox(35), ventana));
 		});
 		
-		//VBox panel = new VBox(10);
 		panel.setPadding(new Insets(10));
 		panel.getChildren().addAll(botonAtras, listaDispo, botonAgregar, botonActualizar, botonBorrar);
-		
-		//scene = new Scene(panel, 400,500);
-		//this.setScene(scene);
-	}
-	
-	/*public String display() {
-		botonAgregar.setOnAction(e->{
-			try {
-				flag = "agregar";
-			//	this.close();
-			} catch (Exception e2) {
-			}
-		});
-		
-		botonActualizar.setOnAction(e->{
-			try {
-				flag = "actualizar";
-				//this.close();
-			} catch (Exception e2) {
-			}
-		});
-		
-		botonBorrar.setOnAction(e->{
-			try {
-				flag = "borrar";
-				//this.close();
-			} catch (Exception e2) {
-			}
-		});
-		//this.showAndWait();
-		return flag;
-		
-		
-		
 	}
 	
 
-	public ListView<String> getListaDispo() {
-		return listaDispo;
-	}
-
-	public void setListaDispo(ListView<String> listaDispo) {
-		this.listaDispo = listaDispo;
-	}
-	}*/
 
 	public void setListaDispo(HashMap<String, Producto> listasProd) {
 		listaDispo= new ListView<>();

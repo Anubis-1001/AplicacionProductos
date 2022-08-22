@@ -22,7 +22,10 @@ public static Date parseFecha(String fecha) {
 	    	}	
 	    }
 
-
+	public static Producto createBlankProduct() {
+		Producto producto= new Producto();
+		return producto;
+	}
 	
 	public static Producto parseProducto(HashMap<String, String> atributosProd) {
 		

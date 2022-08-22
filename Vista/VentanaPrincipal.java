@@ -38,8 +38,6 @@ public class VentanaPrincipal extends Scene {
 		Button botonClientes = new Button("clientes");
 		
 		botonClientes.setOnAction(e->{
-			//Direccion dir = new Direccion(1, 1, "Armenia", "Quindío");
-			//Cliente cliente = new Cliente("Juan", 123, dir.toString(), 312345);
 			VentanaClientela ventanaClientela = new VentanaClientela(new VBox(10), Main.getClientela(), ventana);
 			ventana.setScene(ventanaClientela);
 		});

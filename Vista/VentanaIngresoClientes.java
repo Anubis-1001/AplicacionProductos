@@ -47,7 +47,7 @@ public class VentanaIngresoClientes extends Stage {
 
 
         crear = new Button("Agregar");
-        cuadricula.setConstraints(crear, 1,6);
+        cuadricula.setConstraints(crear, 1,7);
         cuadricula.setHalignment(crear, HPos.CENTER);
 
 

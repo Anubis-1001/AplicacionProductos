@@ -49,15 +49,24 @@ public class VentanaClientela extends Scene {
 
                 listaDispo.getItems().add(String.valueOf(listasCliente.get(cliente.getId()).getId()));
         	}
-        	
+                    listaDispo.getItems().clear();
+                    for(Cliente cliente: listasCliente.values()){
+                        listaDispo.getItems().add(cliente.getId());
+                    }
+
             
-            
-        });
+        }
+        );
         
         botonBorrar.setOnAction(e->{
         	if (listaDispo.getSelectionModel().getSelectedItem() != null) {
                 listasCliente.remove(listaDispo.getSelectionModel().getSelectedItem());
         	}
+            listaDispo.getItems().clear();
+            for(Cliente cliente: listasCliente.values()){
+                listaDispo.getItems().add(cliente.getId());
+            }
+
 
         });
 

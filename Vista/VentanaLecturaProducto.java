@@ -2,6 +2,7 @@ package Vista;
 import java.util.HashMap;
 import Utilidades.Utilidades;
 import Modelo.Producto;
+import Modelo.Cliente;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.geometry.Insets;
@@ -47,13 +48,22 @@ public class VentanaLecturaProducto extends Scene{
 
 				} // añade la nueva lista al list view.
 				listaDispo.getItems().add(listasProd.get(prod.getCodigo()).getCodigo());
-			}  
+				listaDispo.getItems().clear();
+
+			}
+			for(Producto producto: listasProd.values()){
+				listaDispo.getItems().add(producto.getCodigo());}
 		});
 		
 		botonBorrar.setOnAction(e->{
 			if (listaDispo.getSelectionModel().getSelectedItem() != null) {
 				listasProd.remove(listaDispo.getSelectionModel().getSelectedItem());
 
+			}
+
+			listaDispo.getItems().clear();
+			for(Producto producto: listasProd.values()){
+				listaDispo.getItems().add(producto.getCodigo());
 			}
 		});
 		

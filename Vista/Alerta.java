@@ -10,27 +10,26 @@ import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-
-public class Alerta extends Stage{
+public class Alerta extends Stage {
 	public Alerta(String mensaje) {
 		VBox panel = new VBox(20);
 		panel.setPadding(new Insets(10));
 		panel.setAlignment(Pos.CENTER);
-		
+
 		Label msg = new Label(mensaje);
-		
+
 		Button aceptar = new Button("aceptar");
-		
-		aceptar.setOnAction(e->{
+
+		aceptar.setOnAction(e -> {
 			this.close();
 		});
-		
+
 		panel.getChildren().addAll(msg, aceptar);
-		
+
 		Scene escena = new Scene(panel, 210, 200);
-		
+
 		this.initModality(Modality.APPLICATION_MODAL);
-		
+
 		this.setScene(escena);
 	}
 }

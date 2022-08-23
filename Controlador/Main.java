@@ -1,24 +1,11 @@
 package Controlador;
 
 
-import java.util.Date;
-
-
-
 import java.util.HashMap;
-import java.util.ArrayList;
-
-import Vista.VentanaProducto;
-import Vista.VentanaTransaccion;
-import Vista.VentanaLecturaProducto;
 import Vista.VentanaPrincipal;
 import Modelo.*;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.application.Application;
-import java.text.DateFormat;
-
-import java.text.SimpleDateFormat;
 import javafx.stage.Stage;
 
 public class Main extends Application{

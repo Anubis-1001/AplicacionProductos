@@ -1,19 +1,19 @@
 package Modelo;
 
 public class Cliente {
-	
+
 	private String nombre;
 
 	private String id;
 	private String direccion, telefono;
-	
-	public Cliente(String nombre, String id, String dir, String tel){
+
+	public Cliente(String nombre, String id, String dir, String tel) {
 		this.nombre = nombre;
 		this.id = id;
-		this.direccion  = dir;
-		this.telefono  = tel;
+		this.direccion = dir;
+		this.telefono = tel;
 	}
-	
+
 	public Cliente() {
 		this.nombre = "";
 		this.id = "";

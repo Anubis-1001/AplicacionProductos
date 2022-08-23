@@ -3,13 +3,25 @@ package Modelo;
 import java.util.ArrayList;
 
 public class Detalle {
-	int totalProductos;
-	int subtotal;
-	String nombre;
+	private int cantidad;
+	private Producto producto;
+	private int subtotal;
 	
-	public Detalle(int cantidad, int valorU, String nombre) {
-		this.totalProductos = cantidad;
-		this.subtotal = cantidad*valorU;
-		this.nombre = nombre;
+	public Detalle(int cantidad, Producto producto) {
+		this.cantidad = cantidad;
+		this.subtotal = cantidad*producto.getValorUnitario();
+		this.producto = producto;
+	}
+	
+	public Producto getProducto() {
+		return this.producto;
+	}
+	
+	public int getSubtotal() {
+		return this.subtotal;
+	}
+	
+	public int getCantidad() {
+		return this.cantidad;
 	}
 }

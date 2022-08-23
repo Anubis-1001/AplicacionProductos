@@ -46,7 +46,7 @@ public class VentanaPrincipal extends Scene {
 		
 		botonTransacciones.setOnAction(e->{
 			
-			VentanaTransaccion ventanaTransaccion = new VentanaTransaccion(new VBox(10), ventana, new ArrayList<Producto>()); 
+			VentanaTransaccion ventanaTransaccion = new VentanaTransaccion(new VBox(10), ventana, Main.getInventario()); 
 			ventana.setScene(ventanaTransaccion);
 		});
 		
@@ -61,8 +61,6 @@ public class VentanaPrincipal extends Scene {
 				boton.setMinWidth(90);
 			}
 		}
-		
-		//Scene escena = new Scene(panel, 400, 600); 
 		ventana.setScene(this);
 	}
 	

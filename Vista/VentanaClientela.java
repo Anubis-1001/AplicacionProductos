@@ -64,11 +64,15 @@ public class VentanaClientela extends Scene {
 		botonBorrar.setOnAction(e -> {
 			if (listaDispo.getSelectionModel().getSelectedItem() != null) {
 				listasCliente.remove(listaDispo.getSelectionModel().getSelectedItem());
+				listaDispo.getItems().clear();
+				for (Cliente cliente : listasCliente.values()) {
+					listaDispo.getItems().add(cliente.getId());
+				}
+			} else {
+				Alerta mensajeAlerta = new Alerta("No se ha seleccionado ningun producto");
+				mensajeAlerta.show();
 			}
-			listaDispo.getItems().clear();
-			for (Cliente cliente : listasCliente.values()) {
-				listaDispo.getItems().add(cliente.getId());
-			}
+
 
 		});
 

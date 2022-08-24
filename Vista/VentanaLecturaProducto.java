@@ -30,8 +30,12 @@ public class VentanaLecturaProducto extends Scene {
 			VentanaProducto ventanaProd = new VentanaProducto(new Producto()); // producto vacio para cargar la ventana
 																				// de agregar vacia
 			Producto prod = Utilidades.parseProducto(ventanaProd.display());
-			listasProd.put(prod.getCodigo(), prod);
-			listaDispo.getItems().add(listasProd.get(prod.getCodigo()).getCodigo());
+			
+			if (prod.getCodigo() != "") {
+				listasProd.put(prod.getCodigo(), prod);
+				listaDispo.getItems().add(listasProd.get(prod.getCodigo()).getCodigo());
+			}
+
 		});
 
 		botonActualizar.setOnAction(e -> {
@@ -65,13 +69,17 @@ public class VentanaLecturaProducto extends Scene {
 		botonBorrar.setOnAction(e -> {
 			if (listaDispo.getSelectionModel().getSelectedItem() != null) {
 				listasProd.remove(listaDispo.getSelectionModel().getSelectedItem());
+				listaDispo.getItems().clear();
+				for (Producto producto : listasProd.values()) {
+					listaDispo.getItems().add(producto.getCodigo());
+				}
 
+			} else {
+				Alerta mensajeAlerta = new Alerta("No se ha seleccionado ningun producto");
+				mensajeAlerta.show();
 			}
 
-			listaDispo.getItems().clear();
-			for (Producto producto : listasProd.values()) {
-				listaDispo.getItems().add(producto.getCodigo());
-			}
+
 		});
 
 		botonAtras.setOnAction(e -> {

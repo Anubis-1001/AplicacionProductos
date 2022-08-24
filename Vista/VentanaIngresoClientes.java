@@ -131,7 +131,6 @@ public class VentanaIngresoClientes extends Stage {
 					try {
 						ComboBox<String> entradaCampo = (ComboBox<String>) node;
 						c.put(entradaCampo.getId(), entradaCampo.getValue());
-						// c.put(((ComboBox<String>) node).getValue());
 					} catch (Exception excp) {
 						System.out.println(excp);
 					}

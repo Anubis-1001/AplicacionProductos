@@ -46,9 +46,10 @@ public class VentanaRegistroTransaccion extends Stage {
 
 		Label indicacion = new Label("Ingrese el id del cliente");
 
-		crearListaProductos(productos);
+
 
 		botonSiguiente.setOnAction(e -> {
+			crearListaProductos(productos);
 			cliente = Main.getClientela().get(ingresoDeId.getText());
 			if (cliente != null) {
 				crearFactura();
@@ -85,7 +86,6 @@ public class VentanaRegistroTransaccion extends Stage {
 		terminarTransaccion.setOnAction(e -> {
 			Transaccion transaccionFinal = new Transaccion(detalles, cliente);
 			Main.getTransacciones().put(transaccionFinal.getCodigo(), transaccionFinal);
-
 			this.close();
 		});
 

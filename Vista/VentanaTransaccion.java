@@ -25,9 +25,8 @@ public class VentanaTransaccion extends Scene {
 		Button agregar = new Button("Registrar venta");
 		Button atras = new Button("Atras");
 
-		VentanaRegistroTransaccion registro = new VentanaRegistroTransaccion(productos);
-
 		agregar.setOnAction(e -> {
+			VentanaRegistroTransaccion registro = new VentanaRegistroTransaccion(productos);
 			registro.showAndWait();
 			registroTransacciones.getItems().clear();
 			for (Transaccion transaccion : Main.getTransacciones().values()) {

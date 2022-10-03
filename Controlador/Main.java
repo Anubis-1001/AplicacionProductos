@@ -2,7 +2,7 @@ package Controlador;
 
 
 import java.util.HashMap;
-import Vista.VentanaPrincipal;
+import Vista.*;
 import Modelo.*;
 import javafx.scene.layout.VBox;
 import javafx.application.Application;
